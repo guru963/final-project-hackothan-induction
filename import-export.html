@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participant Import/Export</title>
+  <link rel="stylesheet" href="css/import-export.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-exchange-alt"></i> Participant Management</h1>
+      <p class="subtitle">Import & Export Participants</p>
+    </header>
+
+    <div class="card">
+      <div class="nav-tabs">
+        <button class="tab-btn active" data-tab="import">
+          <i class="fas fa-file-import"></i> Import
+        </button>
+        <button class="tab-btn" data-tab="export">
+          <i class="fas fa-file-export"></i> Export
+        </button>
+      </div>
+
+      <div class="tab-content">
+        <!-- Import Tab -->
+        <div class="tab-pane active" id="import">
+          <h2>Import Participants</h2>
+          <p>Upload a CSV file with participant data to add them to the event.</p>
+          
+          <div class="event-select">
+            <label for="import-event">Select Event:</label>
+            <select id="import-event" required>
+              <option value="">-- Select Event --</option>
+              <!-- Events will be loaded dynamically -->
+            </select>
+          </div>
+          
+          <div class="file-upload-container">
+            <div class="file-upload-area" id="drop-area">
+              <i class="fas fa-file-csv file-icon"></i>
+              <p>Drag & drop your CSV file here</p>
+              <p>or</p>
+              <label for="file-input" class="btn">Select File</label>
+              <input type="file" id="file-input" accept=".csv" hidden>
+              <p class="selected-file" id="file-name">No file selected</p>
+            </div>
+          </div>
+          
+          <div class="csv-preview">
+            <h3>CSV Preview</h3>
+            <div class="preview-container" id="csv-preview-table">
+              <p class="no-preview">CSV preview will appear here</p>
+            </div>
+          </div>
+          
+          <div class="template-download">
+            <p><i class="fas fa-download"></i> Need a template? <a href="#" id="download-template">Download CSV Template</a></p>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="btn" id="clear-import">Clear</button>
+            <button class="btn primary" id="start-import" disabled>Import Participants</button>
+          </div>
+          
+          <div class="import-results" id="import-results"></div>
+        </div>
+        
+        <!-- Export Tab -->
+        <div class="tab-pane" id="export">
+          <h2>Export Participants</h2>
+          <p>Download participant data from your events as CSV files.</p>
+          
+          <div class="event-select">
+            <label for="export-event">Select Event:</label>
+            <select id="export-event" required>
+              <option value="">-- Select Event --</option>
+              <!-- Events will be loaded dynamically -->
+            </select>
+          </div>
+          
+          <div class="export-options">
+            <h3>Export Options</h3>
+            <div class="options-grid">
+              <div class="option">
+                <input type="checkbox" id="include-all" checked>
+                <label for="include-all">All Participants</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="include-checked-in">
+                <label for="include-checked-in">Only Checked-in</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="include-lunch">
+                <label for="include-lunch">Only Lunch Collected</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="include-kit">
+                <label for="include-kit">Only Kit Collected</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="export-preview">
+            <h3>Participant Summary</h3>
+            <div class="stats-container" id="export-stats">
+              <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <span class="stat-value" id="total-participants">0</span>
+                <span class="stat-label">Total</span>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-clipboard-check"></i>
+                <span class="stat-value" id="checked-in">0</span>
+                <span class="stat-label">Checked-in</span>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-utensils"></i>
+                <span class="stat-value" id="lunch-count">0</span>
+                <span class="stat-label">Lunch</span>
+              </div>
+              <div class="stat-card">
+                <i class="fas fa-box-open"></i>
+                <span class="stat-value" id="kit-count">0</span>
+                <span class="stat-label">Kit</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="btn primary" id="start-export" disabled>Export to CSV</button>
+          </div>
+          
+          <div class="export-history">
+            <h3>Recent Exports</h3>
+            <div class="history-list" id="export-history">
+              <!-- Recent exports will be displayed here -->
+              <p class="no-history">No recent exports</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="notification" id="notification">
+      <div class="notification-content">
+        <i class="notification-icon"></i>
+        <span class="notification-message"></span>
+      </div>
+      <button class="notification-close"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <!-- Modal for import confirmation -->
+  <div class="modal" id="import-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Import Confirmation</h3>
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>You are about to import <span id="import-count">0</span> participants into the event.</p>
+        <p>This action will:</p>
+        <ul>
+          <li>Skip duplicate email or phone entries</li>
+          <li>Generate unique QR codes for new participants</li>
+          <li>Send welcome emails with QR codes (if configured)</li>
+        </ul>
+        <p>Do you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" id="cancel-import">Cancel</button>
+        <button class="btn primary" id="confirm-import">Confirm Import</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/import-export.js"></script>
+</body>
+</html>

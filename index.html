@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventTrack Pro - Modern Event Management</title>
+    <meta name="description" content="Streamline your event management with our powerful tracking system featuring QR check-ins, attendance tracking, and real-time analytics.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">EventTrack<span>Pro</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Revolutionize Your Event Management</h1>
+                <p>Track attendees, manage check-ins, and monitor participation with our cutting-edge event management platform powered by QR technology.</p>
+                <a href="#" class="btn" id="learnMoreBtn">Learn More</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://illustrations.popsy.co/purple/digital-nomad.svg" alt="Event Management Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>QR Check-In</h3>
+                    <p>Quick and secure attendee registration with unique QR codes that prevent duplication.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-csv"></i>
+                    <h3>CSV Import/Export</h3>
+                    <p>Bulk import attendees or export data for reporting with our CSV tools.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Monitor attendance, lunch distribution, and more with live dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Secure Verification</h3>
+                    <p>Color-changing QR system prevents fraud and ensures one-time use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+    <div class="container">
+        <h2>What Our Clients Say</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Testimonial 1 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <p>"EventTrack Pro transformed our conference management. The QR check-in reduced queues by 70%!"</p>
+                        <div class="client-info">
+                            <img src="image.png" alt="Sarah Johnson">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <span>Tech Conference Organizer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <p>"The dashboard gives me real-time insights that help me manage event flow effectively."</p>
+                        <div class="client-info">
+                            <img src="image.png" alt="Michael Chen">
+                            <div>
+                                <h4>Michael Chen</h4>
+                                <span>University Event Coordinator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <p>"Bulk import saved us hours of work. The system is intuitive and powerful."</p>
+                        <div class="client-info">
+                            <img src="image.png" alt="Priya Patel">
+                            <div>
+                                <h4>Priya Patel</h4>
+                                <span>Festival Director</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventTrack Pro</h3>
+                    <p>Modern event management solutions for organizers who demand efficiency and reliability.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@eventtrackpro.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 EventTrack Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

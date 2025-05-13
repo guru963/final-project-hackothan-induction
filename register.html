@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventTrack Pro - Register</title>
+    <meta name="description" content="Create a new EventTrack Pro account to start managing your events.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <h1>Create Account</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" required>
+                <div class="error-message" id="registerNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" required>
+                <div class="error-message" id="registerEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" required>
+                <div class="error-message" id="registerPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" required>
+                <div class="error-message" id="registerConfirmPasswordError"></div>
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <div class="switch-form">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // Reset error messages
+            document.getElementById('registerNameError').style.display = 'none';
+            document.getElementById('registerEmailError').style.display = 'none';
+            document.getElementById('registerPasswordError').style.display = 'none';
+            document.getElementById('registerConfirmPasswordError').style.display = 'none';
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                document.getElementById('registerConfirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('registerConfirmPasswordError').style.display = 'block';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Registration failed');
+                }
+                
+                // Save token and redirect
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                window.location.href = 'event.html';
+            } catch (error) {
+                if (error.message.includes('Email')) {
+                    document.getElementById('registerEmailError').textContent = error.message;
+                    document.getElementById('registerEmailError').style.display = 'block';
+                } else {
+                    document.getElementById('registerPasswordError').textContent = error.message;
+                    document.getElementById('registerPasswordError').style.display = 'block';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

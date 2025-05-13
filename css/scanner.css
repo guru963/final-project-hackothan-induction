@@ -1,0 +1,333 @@
+/* Base Styles */
+:root {
+    --primary: #2E073F;
+    --secondary: #7A1CAC;
+    --accent: #AD49E1;
+    --dark: #1A0526;
+    --light: #F5F5F5;
+    --white: #FFFFFF;
+    --black: #000000;
+    --success: #4CAF50;
+    --warning: #FFC107;
+    --danger: #F44336;
+    --gray: #9E9E9E;
+}
+
+/* Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+/* Container */
+.scanner-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header */
+.scanner-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--secondary);
+}
+
+.scanner-header h1 {
+    font-size: 28px;
+    color: var(--accent);
+}
+
+.header-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Dropdowns */
+.scanner-mode select,
+.event-day select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--secondary);
+    background-color: var(--black);
+    color: var(--light);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Main Section */
+.scanner-main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Scanner Box */
+.scanner-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.scanner-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(173, 73, 225, 0.3);
+}
+
+.scanner-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#qr-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--black);
+}
+
+.scanner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.scan-line {
+    width: 80%;
+    height: 2px;
+    background-color: var(--accent);
+    animation: scan 2s infinite linear;
+    box-shadow: 0 0 10px var(--accent);
+    margin-bottom: 20px;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+.scan-instruction {
+    color: var(--light);
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Manual Entry */
+.manual-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.manual-entry h3 {
+    font-size: 16px;
+    color: var(--gray);
+    text-align: center;
+}
+
+.manual-entry input {
+    padding: 10px 15px;
+    border: 1px solid var(--secondary);
+    border-radius: 4px;
+    background-color: var(--black);
+    color: var(--light);
+    font-size: 14px;
+}
+
+.manual-entry button {
+    padding: 10px 15px;
+    background-color: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.manual-entry button:hover {
+    background-color: var(--secondary);
+}
+
+/* Result Section */
+.result-section {
+    display: none;
+    max-width: 500px;
+    margin: auto;
+}
+
+.result-card {
+    background-color: var(--black);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(173, 73, 225, 0.15);
+}
+
+.result-header {
+    padding: 15px 20px;
+    background-color: var(--secondary);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-header h2 {
+    font-size: 18px;
+}
+
+.result-status {
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.result-body {
+    padding: 20px;
+}
+
+.participant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+}
+
+.info-label {
+    font-weight: 600;
+    width: 100px;
+    color: var(--gray);
+}
+
+.info-value {
+    flex: 1;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 10px 15px;
+    cursor: pointer;
+    flex: 1;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+}
+
+.btn-secondary {
+    background-color: var(--black);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 10px 15px;
+    cursor: pointer;
+    flex: 1;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(173, 73, 225, 0.1);
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.success {
+    background-color: var(--success);
+}
+
+.notification.warning {
+    background-color: var(--warning);
+    color: var(--black);
+}
+
+.notification.error {
+    background-color: var(--danger);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .scanner-box {
+        max-width: 100%;
+    }
+
+    .info-label {
+        width: 80px;
+    }
+}

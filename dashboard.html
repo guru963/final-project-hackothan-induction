@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="event-name">Event Dashboard</h1>
+            <div id="event-dates"></div>
+        </header>
+
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" data-target="dashboard">
+                <i class="icon">📊</i> Dashboard
+            </button>
+            <button class="nav-btn" data-target="registration">
+                <i class="icon">📝</i> Registration
+            </button>
+            <button class="nav-btn" data-target="scanner">
+                <i class="icon">📱</i> Scanner
+            </button>
+            <button class="nav-btn" data-target="import-export">
+                <i class="icon">📁</i> Import/Export
+            </button>
+        </nav>
+        <input type="text" id="search-input" placeholder="Search participants...">
+        <main id="content-area">
+            <!-- Content will be loaded dynamically based on selection -->
+            <div class="welcome-message">
+                <h2>Welcome to Event Management</h2>
+                <p>Select an option from the navigation menu to get started.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Scanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/scanner.css">
+</head>
+<body>
+    <div class="scanner-container">
+        <header class="scanner-header">
+            <h1 id="event-name">Event Scanner</h1>
+            <div class="header-controls">
+                <div class="scanner-mode">
+                    <select id="scan-mode">
+                        <option value="checkin">Check-In</option>
+                        <option value="lunch">Lunch Collection</option>
+                        <option value="kit">Kit Collection</option>
+                    </select>
+                </div>
+                <div class="event-day">
+                    <select id="event-day">
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main class="scanner-main">
+            <div class="scanner-section">
+                <div class="scanner-box" id="scanner-box">
+                    <div class="scanner-frame"></div>
+                    <video id="qr-video" playsinline></video>
+                    <canvas id="qr-canvas" hidden></canvas>
+                    <div class="scanner-overlay">
+                        <div class="scan-line"></div>
+                        <p class="scan-instruction">Align QR code within frame to scan</p>
+                    </div>
+                </div>
+                
+                <div class="manual-entry">
+                    <h3>Or enter manually</h3>
+                    <input type="text" id="manual-code" placeholder="Enter QR code secret">
+                    <button id="manual-submit">Submit</button>
+                </div>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <div class="result-card" id="result-card">
+                    <div class="result-header">
+                        <h2 id="result-title">Scan Result</h2>
+                        <div class="result-status" id="result-status"></div>
+                    </div>
+                    <div class="result-body">
+                        <div class="participant-info">
+                            <div class="info-row">
+                                <span class="info-label">Name:</span>
+                                <span class="info-value" id="participant-name">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">College:</span>
+                                <span class="info-value" id="participant-college">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value" id="participant-email">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Phone:</span>
+                                <span class="info-value" id="participant-phone">-</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="confirm-action" class="btn-primary">Confirm</button>
+                            <button id="cancel-action" class="btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="js/scanner.js"></script>
+</body>
+</html>

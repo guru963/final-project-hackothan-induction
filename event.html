@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Events | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/event.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>My Events</h1>
+            <div class="user-info">
+                <span id="username">Guru Divya</span>
+                <div class="avatar">GD</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="events-container" id="eventsContainer">
+                <!-- Events will be loaded here dynamically -->
+                <div class="no-events" id="noEvents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <p>No events created yet</p>
+                </div>
+            </div>
+
+            <button class="add-event-btn" id="addEventBtn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </main>
+
+        <!-- Add Event Modal -->
+        <div class="modal" id="addEventModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Create New Event</h2>
+                    <button class="close-btn" id="closeModalBtn">&times;</button>
+                </div>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventName">Event Name</label>
+                        <input type="text" id="eventName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="datetime-local" id="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="datetime-local" id="endDate" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/event.js"></script>
+</body>
+</html>
